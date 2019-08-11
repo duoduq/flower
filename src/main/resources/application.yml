@@ -1,0 +1,64 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+# DataSource config
+connection:
+  url: jdbc:mysql://localhost:3306/ssm?useUnicode=true&characterEncoding=utf8
+  driverClassName: com.mysql.cj.jdbc.Driver
+  username: root
+  password: 123456
+# druid
+druid:
+  initialSize: 1
+  minIdle: 1
+  maxActive: 10
+  maxWait: 10000
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: true
+  testOnReturn: false
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  filters: stat
+  loginUsername: qwj
+  loginPassword: qwj
+# Mybatis plus
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.duoduq.flower.entity
+#编码格式
+spring:
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+upload:
+  folder: /Users/apple/Documents/flower/src/main/resources/static
+#log
+logging:
+  config: classpath:logback-spring.xml
+  path: /Users/apple/Documents/flower/logs/log.log
